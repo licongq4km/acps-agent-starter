@@ -28,7 +28,7 @@ from datetime import datetime, timezone
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPT_DIR not in sys.path:
     sys.path.insert(0, SCRIPT_DIR)
-SKILL_ROOT = os.path.join(SCRIPT_DIR, "..")
+SKILL_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 STATE_DISCOVERY_DIR = os.path.join(SKILL_ROOT, "state", "discovery")
 STATE_TASKS_DIR = os.path.join(SKILL_ROOT, "state", "tasks")
 
@@ -44,8 +44,7 @@ def _get_ssl_context():
     """Build mTLS client context; returns None if not configured (falls back to HTTP)."""
     if _build_ssl_ctx is None:
         return None
-    backend_dir = os.path.abspath(os.path.join(SKILL_ROOT, "..", ".."))
-    return _build_ssl_ctx(backend_dir)
+    return _build_ssl_ctx(SKILL_ROOT)
 
 
 def _read_dotenv_value(dotenv_path: str, key: str) -> str | None:
@@ -83,7 +82,7 @@ def _get_leader_aic() -> str:
     Compute leader_aic default.
     Priority:
     1) environment variable LEADER_AIC
-    2) backend/.env -> LEADER_AIC
+    2) skills/acps/.env -> LEADER_AIC
     3) fallback to "acps-leader-agent"
     """
     default_leader = "acps-leader-agent"
@@ -92,8 +91,7 @@ def _get_leader_aic() -> str:
         if leader_from_env:
             return leader_from_env
 
-        backend_dir = os.path.abspath(os.path.join(SKILL_ROOT, "..", ".."))
-        dotenv_path = os.path.join(backend_dir, ".env")
+        dotenv_path = os.path.join(SKILL_ROOT, ".env")
         leader_from_dotenv = _read_dotenv_value(dotenv_path, "LEADER_AIC")
         return leader_from_dotenv or default_leader
     except Exception:

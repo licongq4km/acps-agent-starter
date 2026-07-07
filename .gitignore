@@ -23,22 +23,17 @@ __pycache__/
 .dev.pid
 logs/
 
-# Frontend builds and dependencies
-frontend/node_modules/
-frontend/dist/
-frontend/.eslintcache
-
 # macOS system files
 .DS_Store
 
 # State caches (generated at runtime)
-backend/skills/acps/state/discovery/*.json
-backend/skills/acps/state/tasks/*.json
+skills/acps/state/discovery/*.json
+skills/acps/state/tasks/*.json
 mcp_server/state/discovery/*.json
 mcp_server/state/tasks/*.json
 
 # Global config (contains user-specific URLs)
-backend/skills/acps/state/config/config.yaml
+skills/acps/state/config/config.yaml
 mcp_server/state/config/config.yaml
 
 # IDE config
@@ -46,8 +41,8 @@ mcp_server/state/config/config.yaml
 .vscode/
 
 # ATR certificates and private keys (sensitive, generated per-environment)
-backend/certs/
-backend/private/
+skills/acps/certs/
+skills/acps/private/
 mcp_server/certs/
 mcp_server/private/
 

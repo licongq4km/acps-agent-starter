@@ -28,7 +28,7 @@ def get_client_ssl_context(
     key_dir: Optional[str] = None,
     trust_bundle: Optional[str] = None,
 ) -> Optional[ssl.SSLContext]:
-    """Build client ``ssl.SSLContext`` for mTLS; *service_root* is Backend root. Returns ``None`` to fall back to HTTP."""
+    """Build client ``ssl.SSLContext`` for mTLS; *service_root* is the skill root. Returns ``None`` to fall back to HTTP."""
     base = resolve_mtls_base_dir(service_root)
 
     _aic = aic or os.getenv("LEADER_AIC", "")

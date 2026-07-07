@@ -18,6 +18,20 @@ Use this skill whenever the user asks you to find an agent, assign a task to an 
 
 ---
 
+## Setup
+
+Install the Python dependencies before running the scripts:
+
+```
+pip install -r requirements.txt
+```
+
+Copy `state/config/config.yaml.example` to `state/config/config.yaml` and set the discovery server URL if needed. The default points to `https://ioa.pub/discovery/acps-adp-v2/discover`.
+
+Optional Leader identity and mTLS settings can be provided through environment variables or by copying `.env.example` to `.env`. Relative certificate paths are resolved from this skill directory.
+
+---
+
 ## Tools (Scripts)
 
 All scripts are located in `scripts/`. Use the `run_python` tool to execute them.

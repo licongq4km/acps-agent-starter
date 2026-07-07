@@ -19,7 +19,7 @@ import yaml
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-SKILL_ROOT = os.path.join(SCRIPT_DIR, "..")
+SKILL_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 STATE_DISCOVERY_DIR = os.path.join(SKILL_ROOT, "state", "discovery")
 CONFIG_FILE = os.path.join(SKILL_ROOT, "state", "config", "config.yaml")
 

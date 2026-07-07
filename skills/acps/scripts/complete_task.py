@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPT_DIR not in sys.path:
     sys.path.insert(0, SCRIPT_DIR)
-SKILL_ROOT = os.path.join(SCRIPT_DIR, "..")
+SKILL_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 STATE_TASKS_DIR = os.path.join(SKILL_ROOT, "state", "tasks")
 
 from acps_sdk.aip.aip_rpc_client import AipRpcClient
@@ -34,8 +34,7 @@ def _get_ssl_context():
     """Build mTLS client context; returns None if not configured (falls back to HTTP)."""
     if _build_ssl_ctx is None:
         return None
-    backend_dir = os.path.abspath(os.path.join(SKILL_ROOT, "..", ".."))
-    return _build_ssl_ctx(backend_dir)
+    return _build_ssl_ctx(SKILL_ROOT)
 
 
 def _load_task_cache(task_id: str) -> dict | None:
